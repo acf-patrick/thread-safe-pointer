@@ -1,2 +1,2 @@
-include_directories(${CMAKE_CURRENT_SOURCE_DIR})
-add_executable(main main.cpp)
+add_library(ThreadSafeTypes INTERFACE)
+target_include_directories(ThreadSafeTypes INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
