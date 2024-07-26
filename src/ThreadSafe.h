@@ -6,25 +6,25 @@
 
 template<typename T>
 class ThreadSafe {
-    using Self = ThreadSafePointer<T>;
+    using Self = ThreadSafe<T>;
     T _data;
     std::shared_mutex _mutex;
 
 public:
-    ThreadSafePointer() = default;
+    ThreadSafe() = default;
 
-    ThreadSafePointer(const T& data) : _data(data) {}
+    ThreadSafe(const T& data) : _data(data) {}
 
     template<typename... Args>
-    ThreadSafePointer(Args&&... args)
+    ThreadSafe(Args&&... args)
         : _data(std::forward<Args>(args)...)
     {}
 
     /* Prevent copy */
 
-    ThreadSafePointer(const ThreadSafePointer&) = delete;
-    ThreadSafePointer& operator= (const ThreadSafePointer&) = delete;
-    ThreadSafePointer& operator= (ThreadSafePointer&&) = delete;
+    ThreadSafe(const ThreadSafe&) = delete;
+    ThreadSafe& operator= (const ThreadSafe&) = delete;
+    ThreadSafe& operator= (ThreadSafe&&) = delete;
 
     T get() {
         std::shared_lock lock(_mutex);
@@ -43,15 +43,10 @@ public:
         return function(T(_data));
     }
 
-    ThreadSafePointer& operator= (const T& data) {
+    T set(const T& data) {
         std::unique_lock lock(_mutex);
         _data = data;
-        return *this;
-    }
-
-    void set(const T& data) {
-        std::unique_lock lock(_mutex);
-        _data = data;
+        return data;
     }
 
     // Mutate data with given function 

@@ -52,5 +52,8 @@
         "streambuf": "cpp",
         "thread": "cpp",
         "typeinfo": "cpp"
+    },
+    "cmake.configureSettings": {
+        "gtest_build_samples": "ON"
     }
 }

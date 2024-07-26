@@ -10,12 +10,14 @@ FetchContent_MakeAvailable(googletest)
 
 enable_testing()
 
-add_executable(hello_test hello_test.cc)
+add_executable(ThreadSafe_test ThreadSafe_unittest.cc)
 
 target_link_libraries(
-    hello_test
+    ThreadSafe_test
+    PRIVATE
+    ThreadSafeTypes
     GTest::gtest_main
 )
 
 include(GoogleTest)
-gtest_discover_tests(hello_test)
+gtest_discover_tests(ThreadSafe_test)
