@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 #include <ThreadSafe.h>
 
-#include "MockType.hh"
+#include "../MockType.hh"
 
 TEST(ThreadSafe, Constructor)
 {

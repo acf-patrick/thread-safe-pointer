@@ -10,14 +10,5 @@ FetchContent_MakeAvailable(googletest)
 
 enable_testing()
 
-add_executable(ThreadSafe_test ThreadSafe_unittest.cc)
-
-target_link_libraries(
-    ThreadSafe_test
-    PRIVATE
-    ThreadSafeTypes
-    GTest::gtest_main
-)
-
-include(GoogleTest)
-gtest_discover_tests(ThreadSafe_test)
+add_subdirectory(unit)
+add_subdirectory(integration)
